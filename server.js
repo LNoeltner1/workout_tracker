@@ -4,10 +4,11 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const workoutController = require("./controllers/workoutController");
+const db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/workout_tracker",
@@ -35,7 +36,8 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-app.use(workoutController);
+require("./routes/html_routes.js");
+require("./routes/api_routes.js");
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
