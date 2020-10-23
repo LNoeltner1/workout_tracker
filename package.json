@@ -12,8 +12,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.17.1",
     "mongoose": "^5.10.9",
     "morgan": "^1.10.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LNoeltner1/workout_tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LNoeltner1/workout_tracker/issues"
+  },
+  "homepage": "https://github.com/LNoeltner1/workout_tracker#readme"
 }

@@ -3,10 +3,10 @@ const router = express.Router();
 
 const db = require("../models");
 
-router.get("/api/workout", (req, res) => {
+router.get("/api/workouts", (req, res) => {
   db.Workout.find({})
-    .then((foundWorkout) => {
-      res.json(foundWorkout);
+    .then((foundWorkouts) => {
+      res.json(foundWorkouts);
     })
     .catch((err) => {
       console.log(err);
@@ -17,7 +17,7 @@ router.get("/api/workout", (req, res) => {
       });
     });
 });
-router.get("/api/workout/:id", (req, res) => {
+router.get("/api/workouts/:id", (req, res) => {
   db.Workout.findById(req.params.id)
     .then((foundWorkout) => {
       res.json(foundWorkout);
@@ -32,7 +32,7 @@ router.get("/api/workout/:id", (req, res) => {
     });
 });
 
-router.post("/api/workout", (req, res) => {
+router.post("/api/workouts", (req, res) => {
   db.Workout.create(req.body)
     .then((newWorkout) => {
       res.json(newWorkout);
@@ -49,7 +49,7 @@ router.post("/api/workout", (req, res) => {
 
 //make post and delete for workouts
 
-router.put("/api/workout/:id", (req, res) => {
+router.put("/api/workouts/:id", (req, res) => {
   db.Workout.findByIdAndUpdate(req.params.id, req.body)
     .then((updatedWorkout) => {
       res.json(updatedWorkout);
@@ -64,7 +64,7 @@ router.put("/api/workout/:id", (req, res) => {
     });
 });
 
-router.delete("/api/workout/:id", (req, res) => {
+router.delete("/api/workouts/:id", (req, res) => {
   db.Workout.findByIdAndDelete(req.params.id)
     .then((deletedItem) => {
       res.json(deletedItem);
