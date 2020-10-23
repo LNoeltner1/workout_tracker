@@ -10,15 +10,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/workout_tracker",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 const connection = mongoose.connection;
 
@@ -36,9 +33,11 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-require("./routes/html_routes.js");
-require("./routes/api_routes.js");
+require("./routes/api_routes.js")(app);
+require("./routes/html_routes.js")(app);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+////look up and include virtual functions
