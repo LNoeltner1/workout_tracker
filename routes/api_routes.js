@@ -17,7 +17,7 @@ module.exports = (app) => {
       });
   });
   app.get("/api/workouts/:id", (req, res) => {
-    db.Workout.findById(req.params.id)
+    db.Workout.findById(req.params._id)
       .then((foundWorkout) => {
         res.json(foundWorkout);
       })
