@@ -30,6 +30,20 @@ module.exports = (app) => {
         });
       });
   });
+  app.get("/api/workouts/range", (req, res) => {
+    db.Workout.find({})
+      .then((foundRange) => {
+        res.json(foundRange);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json({
+          error: true,
+          data: null,
+          message: "Failed to retrieve range.",
+        });
+      });
+  });
 
   app.post("/api/workouts", (req, res) => {
     db.Workout.create(req.body)
@@ -49,7 +63,14 @@ module.exports = (app) => {
   //make post and delete for workouts
 
   app.put("/api/workouts/:id", (req, res) => {
-    db.Workout.findByIdAndUpdate(req.params.id, req.body)
+    db.Workout.findOneAndUpdate(
+      { id: req.params.id },
+      {
+        $push: {
+          exercises: req.body,
+        },
+      }
+    )
       .then((updatedWorkout) => {
         res.json(updatedWorkout);
       })
