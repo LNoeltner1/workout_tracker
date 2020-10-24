@@ -16,22 +16,23 @@ module.exports = (app) => {
         });
       });
   });
-  app.get("/api/workouts/:id", (req, res) => {
-    db.Workout.findById(req.params._id)
-      .then((foundWorkout) => {
-        res.json(foundWorkout);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.json({
-          error: true,
-          data: null,
-          message: "Failed to retrieve workout.",
-        });
-      });
-  });
+  //   app.get("/api/workouts/:id", (req, res) => {
+  //     db.Workout.findById(req.params._id)
+  //       .then((foundWorkout) => {
+  //         res.json(foundWorkout);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         res.json({
+  //           error: true,
+  //           data: null,
+  //           message: "Failed to retrieve workout.",
+  //         });
+  //       });
+  //   });
   app.get("/api/workouts/range", (req, res) => {
     db.Workout.find({})
+      .limit(7)
       .then((foundRange) => {
         res.json(foundRange);
       })
@@ -63,7 +64,7 @@ module.exports = (app) => {
   //make post and delete for workouts
 
   app.put("/api/workouts/:id", (req, res) => {
-    db.Workout.findOneAndUpdate(
+    db.Workout.findByIdAndUpdate(
       { id: req.params.id },
       {
         $push: {
