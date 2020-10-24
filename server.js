@@ -42,5 +42,3 @@ require("./routes/html_routes.js")(app);
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-////look up and include virtual functions
