@@ -67,7 +67,7 @@ module.exports = (app) => {
   app.put("/api/workouts/:id", (req, res) => {
     db.Workout.findByIdAndUpdate(
       //   req.params._id,
-      req.params.id,
+      req.params._id,
       {
         $push: {
           exercises: req.body,
