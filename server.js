@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const logger = require("morgan");
+// const logger = require("morgan");
 
 const PORT = process.env.PORT || 3000;
 
@@ -10,7 +10,7 @@ const db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
-app.use(logger("dev"));
+// app.use(logger("dev"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
@@ -26,6 +26,7 @@ connection.on("connected", () => {
 });
 
 connection.on("error", (err) => {
+  // console.log("Mongoose connection error: " + err);
   console.log("Mongoose connection error: ", err);
 });
 
