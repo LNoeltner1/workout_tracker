@@ -64,14 +64,11 @@ module.exports = (app) => {
   //make post and delete for workouts
 
   app.put("/api/workouts/:id", (req, res) => {
-    db.Workout.findByIdAndUpdate(
-      { id: req.params.id },
-      {
-        $push: {
-          exercises: req.body,
-        },
-      }
-    )
+    db.Workout.findByIdAndUpdate(req.params._id, {
+      $push: {
+        exercises: req.body,
+      },
+    })
       .then((updatedWorkout) => {
         res.json(updatedWorkout);
       })
