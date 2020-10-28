@@ -38,11 +38,12 @@ module.exports = (app) => {
       })
       .catch((err) => {
         console.log(err);
-        // res.json({
-        //   err: true,
-        //   data: null,
-        //   message: "Failed to retrieve range.",
-        res.json(err);
+        res.json({
+          error: true,
+          data: null,
+          message: "Failed to retrieve workout.",
+          // res.json(err);
+        });
       });
   });
 

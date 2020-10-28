@@ -26,12 +26,10 @@ async function initExercise() {
   }
   if (workout) {
     location.search = "?id=" + workout._id;
-    // location.search = "?id=" + workout._id;
   }
 }
 
 initExercise();
-
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
 
