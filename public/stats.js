@@ -1,11 +1,10 @@
-fetch("/api/workouts/range")
+fetch("/api/workoutDB/range")
   .then((response) => {
     return response.json();
   })
   .then((data) => {
     populateChart(data);
   });
-
 API.getWorkoutsInRange();
 
 function generatePalette() {
@@ -32,9 +31,8 @@ function generatePalette() {
 function populateChart(data) {
   let durations = duration(data);
   let pounds = calculateTotalWeight(data);
-  let workouts = workoutNames(data);
+  let workoutDB = workoutNames(data);
   const colors = generatePalette();
-
   let line = document.querySelector("#canvas").getContext("2d");
   let bar = document.querySelector("#canvas2").getContext("2d");
   let pie = document.querySelector("#canvas3").getContext("2d");
@@ -144,7 +142,7 @@ function populateChart(data) {
   let pieChart = new Chart(pie, {
     type: "pie",
     data: {
-      labels: workouts,
+      labels: workoutDB,
       datasets: [
         {
           label: "Excercises Performed",
@@ -164,7 +162,7 @@ function populateChart(data) {
   let donutChart = new Chart(pie2, {
     type: "doughnut",
     data: {
-      labels: workouts,
+      labels: workoutDB,
       datasets: [
         {
           label: "Excercises Performed",
@@ -184,19 +182,16 @@ function populateChart(data) {
 
 function duration(data) {
   let durations = [];
-
   data.forEach((workout) => {
     workout.exercises.forEach((exercise) => {
       durations.push(exercise.duration);
     });
   });
-
   return durations;
 }
 
 function calculateTotalWeight(data) {
   let total = [];
-
   data.forEach((workout) => {
     workout.exercises.forEach((exercise) => {
       total.push(exercise.weight);
@@ -207,13 +202,13 @@ function calculateTotalWeight(data) {
 }
 
 function workoutNames(data) {
-  let workouts = [];
+  let workoutDB = [];
 
   data.forEach((workout) => {
     workout.exercises.forEach((exercise) => {
-      workouts.push(exercise.name);
+      workoutDB.push(exercise.name);
     });
   });
 
-  return workouts;
+  return workoutDB;
 }

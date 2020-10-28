@@ -1,14 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require("path");
-const logger = require("morgan");
+// const path = require("path");
+// const logger = require("morgan");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-const db = require("./models");
+// const db = require("./models");
 
-app.use(logger("dev"));
+// app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -31,11 +31,11 @@ connection.on("error", (err) => {
   console.log("Mongoose connection error: ", err);
 });
 
-app.get("/api/config", (req, res) => {
-  res.json({
-    success: true,
-  });
-});
+// app.get("/api/config", (req, res) => {
+//   res.json({
+//     success: true,
+//   });
+// });
 
 require("./routes/api_routes.js")(app);
 require("./routes/html_routes.js")(app);
